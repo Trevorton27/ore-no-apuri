@@ -14,7 +14,12 @@ export default async function HomePage() {
   const { user } = await payload.auth({ headers })
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const DEV_URL = "https://ominous-couscous-pgvrjqvqvq929wg4-3000.app.github.dev"
 
+  const courses = await payload.find({
+    collection: 'courses'
+  })
+ console.log('course test up in here: ', courses)
   return (
     <div className="home">
       <div className="content">

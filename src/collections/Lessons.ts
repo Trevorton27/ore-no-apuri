@@ -1,0 +1,48 @@
+import { CollectionConfig } from 'payload';
+
+export const Lessons: CollectionConfig = {
+  slug: 'lessons',
+  admin: {
+    useAsTitle: 'title',
+  },
+  access: {
+    read: () => true,
+    create: ({ req }) => req.user?.role === 'instructor',
+    update:({ req }) => req.user?.role === 'instructor',
+    delete: ({ req }) => req.user?.role === 'instructor',
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'content',
+      type: 'richText',
+    },
+    {
+      name: 'videoUrl',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'instructor',
+      type: 'relationship',
+      relationTo: 'users',
+      required: true,
+      hooks: {
+        beforeChange: [
+          ({ req, operation }) => {
+            if (operation === 'create' && req.user?.role === 'instructor') {
+              return req.user.id;
+            }
+            return undefined;
+          },
+        ],
+      },
+    },
+  ],
+};
+
+export default Lessons;
