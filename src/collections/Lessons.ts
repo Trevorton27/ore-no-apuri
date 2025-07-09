@@ -7,9 +7,9 @@ export const Lessons: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req }) => req.user?.role === 'instructor',
-    update:({ req }) => req.user?.role === 'instructor',
-    delete: ({ req }) => req.user?.role === 'instructor',
+    create: ({ req }) => req.user?.role === 'instructor' || req.user?.role === 'admin',
+    update:({ req }) => req.user?.role === 'instructor' || req.user?.role === 'admin',
+    delete: ({ req }) => req.user?.role === 'instructor' || req.user?.role === 'admin',
   },
   fields: [
     {

@@ -3,6 +3,11 @@ import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
 import { fileURLToPath } from 'url'
+import { getCourses } from '@/app/(frontend)/api/courses'
+import { getLessons } from '@/app/(frontend)/api/lessons'
+import { getUsers } from '@/app/(frontend)/api/users'
+import { getInquiries } from '@/app/(frontend)/api/inquiries'
+import { getMedia } from '@/app/(frontend)/api/media'
 
 import config from '@/payload.config'
 import './styles.css'
@@ -14,12 +19,23 @@ export default async function HomePage() {
   const { user } = await payload.auth({ headers })
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
-  const DEV_URL = "https://ominous-couscous-pgvrjqvqvq929wg4-3000.app.github.dev"
 
-  const courses = await payload.find({
-    collection: 'courses'
-  })
- console.log('course test up in here: ', courses)
+  const courses = await getCourses()
+  console.log('courses up in here: ', courses)
+
+  const lessons = await getLessons()
+  console.log('lessons up in here: ', lessons)
+
+  const users = await getUsers()
+  console.log('users up in here: ', users)
+  
+  const inquiries = await getInquiries()
+  console.log('inquiries up in here: ', inquiries)
+
+  const media = await getMedia()
+  console.log('media up in here: ', media)
+
+
   return (
     <div className="home">
       <div className="content">
