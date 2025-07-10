@@ -29,7 +29,7 @@ export const Courses: CollectionConfig = {
       hooks: {
         beforeChange: [
           ({ req, operation }) => {
-            if (operation === 'create' && req.user?.role === 'instructor') {
+            if (operation === 'create' && req.user?.role === 'instructor' || req.user?.role === 'admin') {
               return req.user.id;
             }
             return undefined;

@@ -3,11 +3,11 @@ import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
 import { fileURLToPath } from 'url'
-import { getCourses } from '@/app/(frontend)/api/courses'
-import { getLessons } from '@/app/(frontend)/api/lessons'
-import { getUsers } from '@/app/(frontend)/api/users'
-import { getInquiries } from '@/app/(frontend)/api/inquiries'
-import { getMedia } from '@/app/(frontend)/api/media'
+import { getCourses, getLessons, getUsers, getInquiries, getMedia} from '@/app/(frontend)/api/getCollections'
+
+import DeleteCourse from '@/app/(frontend)/components/deleteCourseForm'
+import GetAllCourses from '@/app/(frontend)/components/getAllCourses'
+import CreateCourse from '@/app/(frontend)/components/createCourseForm'
 
 import config from '@/payload.config'
 import './styles.css'
@@ -68,6 +68,9 @@ export default async function HomePage() {
             Documentation
           </a>
         </div>
+        <DeleteCourse />
+        <GetAllCourses />
+        <CreateCourse />
       </div>
       <div className="footer">
         <p>Update this page by editing</p>
