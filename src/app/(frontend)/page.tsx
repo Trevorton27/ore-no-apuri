@@ -8,9 +8,11 @@ import { getCourses, getLessons, getUsers, getInquiries, getMedia} from '@/app/(
 import DeleteCourse from '@/app/(frontend)/components/deleteCourseForm'
 import GetAllCourses from '@/app/(frontend)/components/getAllCourses'
 import CreateCourse from '@/app/(frontend)/components/createCourseForm'
+import UpdateCourse from '@/app/(frontend)/components/updateCourseForm'
 
 import config from '@/payload.config'
 import './styles.css'
+import UpdateCourseForm from '@/app/(frontend)/components/updateCourseForm'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -71,6 +73,7 @@ export default async function HomePage() {
         <DeleteCourse />
         <GetAllCourses />
         <CreateCourse />
+        <UpdateCourseForm />
       </div>
       <div className="footer">
         <p>Update this page by editing</p>
