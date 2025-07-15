@@ -184,6 +184,7 @@ export interface Course {
 export interface Lesson {
   id: number;
   title: string;
+  course: number | Course;
   content?: {
     root: {
       type: string;
@@ -356,6 +357,7 @@ export interface InquiriesSelect<T extends boolean = true> {
  */
 export interface LessonsSelect<T extends boolean = true> {
   title?: T;
+  course?: T;
   content?: T;
   videoUrl?: T;
   instructor?: T;
