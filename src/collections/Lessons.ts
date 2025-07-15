@@ -40,6 +40,7 @@ export const Lessons: CollectionConfig = {
       hooks: {
         beforeChange: [
           ({ req, operation }) => {
+            console.log('current user up in here tho: ', req.user)
             if (operation === 'create' && req.user?.role === 'instructor') {
               return req.user.id
             }

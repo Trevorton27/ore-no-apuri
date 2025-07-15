@@ -3,7 +3,13 @@ import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
 import { fileURLToPath } from 'url'
-import { getCourses, getLessons, getUsers, getInquiries, getMedia} from '@/app/(frontend)/api/getCollections'
+import {
+  getCourses,
+  getLessons,
+  getUsers,
+  getInquiries,
+  getMedia,
+} from '@/app/(frontend)/api/getCollections'
 
 import DeleteCourse from '@/app/(frontend)/components/deleteCourseForm'
 import GetAllCourses from '@/app/(frontend)/components/getAllCourses'
@@ -20,6 +26,8 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
+  console.log('user up in here: ', user)
+
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   const courses = await getCourses()
@@ -30,13 +38,12 @@ export default async function HomePage() {
 
   const users = await getUsers()
   console.log('users up in here: ', users)
-  
+
   const inquiries = await getInquiries()
   console.log('inquiries up in here: ', inquiries)
 
   const media = await getMedia()
   console.log('media up in here: ', media)
-
 
   return (
     <div className="home">
