@@ -2,7 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 const isPublicRoute = createRouteMatcher(
   ['/', '/sign-in', '/sign-up'],
-  //  ignoredRoutes: ['/api/(.*)'], // Let API routes handle auth manually
+ // ignoredRoutes: ['/api/(.*)'] // Let API routes handle auth manually
 )
 
 export default clerkMiddleware(async (auth, req) => {

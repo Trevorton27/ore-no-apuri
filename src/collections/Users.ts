@@ -16,7 +16,8 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-    read: () => true,
+     admin: ({ req }) =>
+      req.user?.role === 'admin' && req.user?.authProvider === 'payload',
   },
   fields: [
     {

@@ -1,0 +1,30 @@
+{
+  "name": "Next.js + Payload LMS",
+  "containerEnv": {
+    "LANG": "en_US.UTF-8",
+    "LANGUAGE": "en_US:en",
+    "LC_ALL": "en_US.UTF-8"
+  },
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "prisma.prisma"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 3001],
+  "postCreateCommand": "pnpm install",
+  "remoteUser": "node",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18",
+      "installTool": "pnpm"
+    }
+  }
+}
