@@ -127,6 +127,8 @@ export interface User {
   id: number;
   role: 'admin' | 'instructor' | 'student';
   name: string;
+  authProvider: 'payload' | 'clerk';
+  clerkId: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -293,6 +295,8 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   role?: T;
   name?: T;
+  authProvider?: T;
+  clerkId?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

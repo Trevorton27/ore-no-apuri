@@ -1,13 +1,7 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload'
 
-export type UserRole = 'admin' | 'instructor' | 'student';
-
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  role: UserRole;
-}
+export type UserRole = 'admin' | 'instructor' | 'student'
+export type AuthProvider = 'payload' | 'clerk'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -16,9 +10,9 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-     admin: ({ req }) =>
-      req.user?.role === 'admin' && req.user?.authProvider === 'payload',
+    admin: ({ req }) => req.user?.role === 'admin' && req.user?.authProvider === 'payload',
   },
+
   fields: [
     {
       name: 'role',
@@ -32,7 +26,21 @@ export const Users: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'authProvider',
+      type: 'select',
+      options: ['payload', 'clerk'],
+      defaultValue: 'payload',
+      required: true,
+      admin: { position: 'sidebar' },
+    },
+    {
+      name: 'clerkId',
+      type: 'text',
+      required: true,
+      unique: true,
+    },
   ],
-};
+}
 
-export default Users;
+export default Users
