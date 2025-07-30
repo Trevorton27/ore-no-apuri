@@ -10,22 +10,14 @@ export async function GET() {
       depth: 2,
     })
 
-       console.log('courses in the backend tho: ', courses)
-
-
     return new Response(JSON.stringify(courses), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
       },
     })
-
-   
   } catch (error) {
     console.error('Error fetching courses:', error)
-    return new Response(
-      JSON.stringify({ error: 'Failed to fetch courses' }),
-      { status: 500 }
-    )
+    return new Response(JSON.stringify({ error: 'Failed to fetch courses' }), { status: 500 })
   }
 }
